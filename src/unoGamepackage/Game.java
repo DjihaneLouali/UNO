@@ -12,6 +12,7 @@ public class Game {
     private Card topCard;
     private int direction = 1; // 1 for clockwise, -1 for counter-clockwise
     private List<GameEventListener> eventListeners = new ArrayList<>();
+    private Player winner;
     
     public void addGameEventListener(GameEventListener listener) {
         eventListeners.add(listener);
@@ -27,10 +28,11 @@ public class Game {
         }
     }
     
-    public Game(List<Player> players) {
+    public void initializeGame(List<Player> players) {
         this.players = players;
         this.deck = new Deck();
         this.currentPlayerIndex = 0;
+        this.winner = null;
         dealInitialCards();
         initializeTopCard();
     }
